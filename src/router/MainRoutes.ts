@@ -37,11 +37,7 @@ const MainRoutes = {
             path: '/table',
             component: () => import('@/views/MenuPage/Table/Table.vue'),
         },
-        {
-            name: 'Account Management',
-            path: '/account',
-            component: () => import('@/views/MenuPage/Account/Account.vue'),
-        },
+
         // 
         {
             name: "Staff Scan QR",
@@ -59,63 +55,6 @@ const MainRoutes = {
             component: () => import('@/views/MenuPage/HistoryLastEvent/HistoryLastEvent.vue'),
         },
 
-        // {
-        //     name: 'Expense',
-        //     path: '/expense',
-        //     component: () => import('@/views/MenuPage/Expense/Expense.vue'),
-        // },
-        // {
-        //     name: 'Expense List',
-        //     path: '/expenselist',
-        //     component: () => import('@/views/MenuPage/ExpenseList/ExpenseList.vue'),
-        // },
-        // {
-        //     name: 'Make Seeding',
-        //     path: '/makeseeding',
-        //     component: () => import('@/views/MenuPage/Finance/MakeSeeding.vue'),
-        // },
-        // {
-        //     name: 'Request',
-        //     path: '/request',
-        //     component: () => import('@/views/MenuPage/FinanceRequest/Request.vue'),
-        // },
-        // {
-        //     name: 'During Today',
-        //     path: '/reportduringtoday',
-        //     component: () => import('@/views/MenuPage/ReportData/ReportDuringToday.vue'),
-        //     meta: { requiresAuth: false }, // ทุกคนสามารถเข้าถึงได้
-        // },
-        // {
-        //     name: 'Daily',
-        //     path: '/reportdaily',
-        //     component: () => import('@/views/MenuPage/ReportDataDaily/ReportDataDaily.vue'),
-        //     meta: { requiresAuth: false }, // ทุกคนสามารถเข้าถึงได้
-        // },
-        // {
-        //     name: 'Staff Management',
-        //     path: '/staffmanagemame',
-        //     component: () => import('@/views/MenuPage/StaffUser/StaffManagement.vue'),
-        // },
-        // {
-        //     name: 'Find Transaction',
-        //     path: '/findtransaction',
-        //     component: () => import('@/views/MenuPage/FindTransaction/FindTransaction.vue'),
-        // },
-        // {
-        //     name: 'Deposit',
-        //     path: '/deposit',
-        //     component: () => import('@/views/MenuPage/Deposit/DepositPage.vue'),
-        // },
-        // {
-        //     name: 'Withdraw Ticket',
-        //     path: '/withdrawticket',
-        //     component: () => import('@/views/MenuPage/WithdrawTicket/WithdrawTicket.vue'),
-        // },
-        // {
-        //     name: 'Setting',
-        //     path: '/setting',
-        //     component: () => import('@/views/pages/Setting.vue'),
-        // },
         {
             name: 'Account Setting',
             path: '/setting',

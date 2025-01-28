@@ -21,12 +21,29 @@ interface Event {
 const events = ref<Event[]>([]);
 
 
-const dialog = ref(false);
-const isSubmitting = ref(false);
-const selectedEventId = ref<string | null>(null);
+// const dialog = ref(false);
+// const isSubmitting = ref(false);
+// const selectedEventId = ref<string | null>(null);
 const showToast = ref(false);
 const toastMessage = ref('');
 const toastColor = ref('');
+
+// ฟังก์ชันสำหรับแปลง File เป็น URL หรือคืนค่าตรงๆ หากเป็น string
+const getImageSrc = (imgConcert: File | string | null | undefined): string | undefined => {
+    if (!imgConcert) return undefined; // ถ้าไม่มีค่า ให้คืน undefined
+
+    // หาก imgConcert เป็น File ให้แปลงเป็น URL
+    if (imgConcert instanceof File) {
+        return URL.createObjectURL(imgConcert);
+    }
+
+    // หาก imgConcert เป็น string ให้ส่งกลับตรงๆ
+    if (typeof imgConcert === "string") {
+        return imgConcert;
+    }
+
+    return undefined; // สำหรับกรณีอื่นๆ
+};
 
 
 // Fetch events from the API
@@ -119,9 +136,16 @@ onMounted(() => {
             <tbody>
                 <tr v-for="event in events" :key="event._id">
                     <td>
-                        <v-img v-if="event.imgConcert" :src="event.imgConcert" max-width="400" max-height="400"
-                            class="rounded-lg mb-3 w-24 mt-5" contain aspect-ratio="1" />
-                    </td>
+    <v-img 
+        v-if="getImageSrc(event.imgConcert)" 
+        :src="getImageSrc(event.imgConcert)" 
+        max-width="400" 
+        max-height="400"
+        class="rounded-lg mb-3 w-24 mt-5" 
+        contain 
+        aspect-ratio="1" 
+    />
+</td>
                     <td>{{ event.name }}</td>
                     <td>{{ new Date(event.dateStart).toLocaleDateString('en-EN', {
                         year: 'numeric', month: 'long', day:
@@ -178,7 +202,7 @@ onMounted(() => {
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="grey" text @click="closeDeleteDialog">ยกเลิก</v-btn>
+                    <v-btn color="grey"  @click="closeDeleteDialog">ยกเลิก</v-btn>
                     <v-btn color="error" @click="confirmDelete">ลบ</v-btn>
                 </v-card-actions>
             </v-card>

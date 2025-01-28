@@ -27,6 +27,7 @@ export default {
     GET_TABLE_AVAILLABLE: `${BASE_URL}/api/tables/available`,
     CREATE_TABLE: `${BASE_URL}/api/tables`,
     UPDATE_TABLE: `${BASE_URL}/api/tables/:id`,
+    DELETE_TABLE: `${BASE_URL}/api/tables/:id`,
 
     STAFF_SCAN_QR: `${BASE_URL}/api/booking/:id/status`,
     GET_BOOKING_ALL: `${BASE_URL}/api/bookings`,

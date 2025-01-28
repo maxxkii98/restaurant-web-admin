@@ -112,7 +112,7 @@ const chartOptions = computed(() => {
                             <Icon icon="solar:user-circle-linear" class="text-primary" width="24" height="24"/>
                         </v-avatar>
                         <div>
-                            <h6 class="text-h6 font-weight-semibold d-flex align-center">{{total.price}}<v-chip color="success" class="bg-lightsuccess ml-1" variant="outlined" size="x-small">+12%</v-chip></h6>
+                            <h6 class="text-h6 font-weight-semibold d-flex align-center">20202020<v-chip color="success" class="bg-lightsuccess ml-1" variant="outlined" size="x-small">+12%</v-chip></h6>
                             <p class="text-subtitle-1 text-grey100 font-weight-medium">รายรับทังหมด</p>
                         </div>
                     </div>

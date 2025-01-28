@@ -4,9 +4,9 @@
             <v-row>
                 <!-- แสดงรูปภาพ Event -->
                 <v-col cols="12" md="4">
-                    <v-card class="mb-4 elevation-0 " v-if="eventToEdit.imgConcert">
-                        <v-img :src="eventToEdit.imgConcert" alt="รูปภาพ Event" max-height="250" />
-                    </v-card>
+                    <v-card class="mb-4 elevation-0 " v-if="getImageSrc(eventToEdit.imgConcert)">
+    <v-img :src="getImageSrc(eventToEdit.imgConcert)" alt="รูปภาพ Event" max-height="250" />
+</v-card>
                     <v-file-input label="คลิกเพื่อเปลี่ยนรูปภาพ Event" outlined accept="image/*"
                         @change="handleFileChange" />
                 </v-col>
@@ -125,6 +125,7 @@ import { ref, onMounted, computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import axios from 'axios';
 import API_PATH from '@/config/apiPath';
+import { AxiosError } from 'axios';
 
 // Interfaces
 interface Event {
@@ -274,11 +275,11 @@ const deleteTableConfirm = async () => {
         // Refresh หน้าเว็บหลังจากลบเสร็จ
         window.location.reload();
     } catch (error) {
-        console.error("Error deleting table:", error);
-        toastMessage.value = error.response?.data?.error || "เกิดข้อผิดพลาดในการลบโต๊ะ";
-        toastColor.value = "error";
-        showToast.value = true;
-    } finally {
+    const err = error as any;
+    toastMessage.value = err.response?.data?.error || "เกิดข้อผิดพลาดในการลบโต๊ะ";
+    toastColor.value = "error";
+    showToast.value = true;
+} finally {
         isDeleteModalOpen.value = false;
         selectedTableToDelete.value = null;
     }
@@ -293,7 +294,19 @@ const handleFileChange = (e: InputEvent) => {
         eventToEdit.value.imgConcert = target.files[0];
     }
 };
+const getImageSrc = (imgConcert: File | string | null | undefined): string | undefined => {
+    if (!imgConcert) return undefined;
 
+    if (imgConcert instanceof File) {
+        return URL.createObjectURL(imgConcert);
+    }
+
+    if (typeof imgConcert === 'string') {
+        return imgConcert;
+    }
+
+    return undefined;
+};
 // Functions
 const addPrice = () => {
     eventToEdit.value.prices.push({ type: '', amount: 0 });
